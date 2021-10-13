@@ -1,0 +1,54 @@
+import React, { useContext, useState } from 'react'
+import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { AppContext } from '../context/AppContext'
+
+export const Cart = () => {
+    const { cartItem } = useContext(AppContext)
+    return (
+        <View>
+            <Text>TEXTOOOO</Text>
+                        <FlatList
+                            data={cartItem}
+                            renderItem={(mapCart) => (
+
+                                <View>
+                                    
+                                    <Text>{`University Name: ${mapCart.item.uName}   Price: $${mapCart.item.priceXsemester}`}</Text>
+                                </View>
+                            )}
+                        />
+
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+});
+
+
