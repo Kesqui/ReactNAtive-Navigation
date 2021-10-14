@@ -1,9 +1,26 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from './Home';
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+import { Text, View } from 'react-native';
+import {Home} from './Home';
 import { ShowBill } from './ShowBill';
 import { ShowCart } from './ShowCart';
 
-
+function HomeScreen() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Home!</Text>
+      </View>
+    );
+  }
+  
+  function SettingsScreen() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
 const Tab = createBottomTabNavigator();
 
 export const Tabs=() =>{
@@ -27,15 +44,14 @@ export const Tabs=() =>{
             options={{ title: 'University Sales' }}
           />
            <Tab.Screen
-           style={styles.container}
             name="Cart page"
             component={ShowCart}
             options={{ title: 'Cart '}}
           />
-           <Tab.Screen
-            name="Bill page"
+            <Tab.Screen
+            name="Cart bill"
             component={ShowBill}
-            options={{ title: 'Bill ' }}
+            options={{ title: 'Cart '}}
           />
       </Tab.Navigator>
 

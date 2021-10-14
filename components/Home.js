@@ -6,7 +6,7 @@ import { Cart } from './Cart';
 import { Navbar } from './Navbar';
 import { Universities } from './Universities';
 
-export default function Home() {
+export const Home=()=> {
     return (
                 <SafeAreaView style={{ flex: 1 }} >
                     <View style={styles.container}>
