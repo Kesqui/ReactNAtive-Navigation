@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const AppContext=createContext();
 
-export const AppProvider = ({children}) => {
+export const AppProvider = ({children,navigate}) => {
 
     const [uInfo, setUinfo] = useState([])
     const [cartItem, setCartItem] = useState([])

@@ -8,18 +8,11 @@ import { Navbar } from './Navbar';
 export const ShowBill = ({navigation}) => {
     return (
 
-        <View style={{ flex: 1 }}>
-        <AppProvider>
             <SafeAreaView style={{ flex: 1 }} >
                 <View>
                     <Bill />
                 </View>
             </SafeAreaView>
-        </AppProvider>
-        <View >
-                <Navbar navigation={navigation} />
-            </View>
-        </View>
 
 
     );

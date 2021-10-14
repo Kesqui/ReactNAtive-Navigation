@@ -6,22 +6,16 @@ import { Cart } from './Cart';
 import { Navbar } from './Navbar';
 import { Universities } from './Universities';
 
-export default function Home({ navigation }) {
+export default function Home() {
     return (
-        <View style={{ flex: 1 }} >
-            <AppProvider>
                 <SafeAreaView style={{ flex: 1 }} >
                     <View style={styles.container}>
                         <Text>Universities Options in US</Text>
                         <Universities />
                     </View>
                 </SafeAreaView>
-            </AppProvider>
-            <View >
-                <Navbar navigation={navigation} />
-            </View>
 
-        </View>
+        
     );
 }
 

@@ -7,21 +7,11 @@ import { Navbar } from './Navbar';
 
 export const ShowCart = ({ navigation }) => {
     return (
-        <View style={{ flex: 1 }}>
-            <AppProvider>
                 <SafeAreaView style={{ flex: 1 }} >
 
-                    <View>
                         <Cart />
-                    </View>
 
                 </SafeAreaView>
-
-            </AppProvider>
-            <View >
-                <Navbar navigation={navigation} />
-            </View>
-        </View>
 
 
     );

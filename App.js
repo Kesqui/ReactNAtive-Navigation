@@ -7,34 +7,19 @@ import  {Bill}  from './components/Bill';
 import { Cart } from './components/Cart';
 import { ShowCart } from './components/ShowCart';
 import { ShowBill } from './components/ShowBill';
+import { AppProvider } from './context/AppContext';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Tabs } from './components/Tabs';
 
 
-
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
 
   return (
-      <NavigationContainer >
-        <Stack.Navigator >
-          <Stack.Screen
-            name="Home page"
-            component={Home}
-            options={{ title: 'University Sales' }}
-          />
-           <Stack.Screen
-           style={styles.container}
-            name="Cart page"
-            component={ShowCart}
-            options={{ title: 'Cart '}}
-          />
-           <Stack.Screen
-            name="Bill page"
-            component={ShowBill}
-            options={{ title: 'Bill ' }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+    <AppProvider>
+      <Tabs/>
+    </AppProvider>
   );
 }
 
