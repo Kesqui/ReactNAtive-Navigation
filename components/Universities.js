@@ -4,12 +4,12 @@ import { StyleSheet } from 'react-native-web'
 import { AppContext } from '../context/AppContext'
 
 export const Universities = () => {
-    const { uInfo, cartItem, setCartItem,quantity,setQuantity} = useContext(AppContext)
-
+    const { uInfo, cartItem, setCartItem} = useContext(AppContext)
+    const[quantity,setQuantity]=useState(1)
     const setCart = ({ item }) => () => {
         const cartFinal = cartItem.filter(itemLocal => itemLocal.id !== item.id);
-        cartFinal.push(item)
-        setCartItem([...cartFinal,quantity])
+        cartFinal.push({...item, quantity})
+        setCartItem(cartFinal)
         // setCartItem(cartFinal)
     }
     console.log(cartItem)
