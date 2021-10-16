@@ -6,7 +6,7 @@ import { AppContext, AppProvider } from '../context/AppContext'
 
 export const Bill = () => {
     
-    const {showBillItem,createOrder} = useContext(AppContext)
+    const {showBillItem,setshowBillItem,createOrder} = useContext(AppContext)
     
     const [sum,setSum]=useState(0)
 
@@ -14,11 +14,17 @@ export const Bill = () => {
         console.log(showBillItem)
         const pricesArray=showBillItem.map(item=>item.priceXsemester)
         setSum(pricesArray.reduce((a, b) => a + b, 0))
+        
         }
-
-    useEffect(() => {
-       sumFunction()        
-   }, [])
+        
+        const cleanScreen=()=>{
+            setshowBillItem([])
+            setSum(0) 
+        }
+        
+        useEffect(() => {
+            sumFunction()    
+        }, [showBillItem])
 
     
     return (
@@ -28,11 +34,12 @@ export const Bill = () => {
                             renderItem={(mapBill) => (
                                 <View>
                                     <Text>{`${mapBill.item.uName}  $${mapBill.item.priceXsemester}`}</Text>
+                                    
                                 </View>
                             )}
                             />
                     <Text>Total amount: {sum}</Text>
-
+                    <Button title='Got it' onPress={cleanScreen}/>
         </View>
     )
 }

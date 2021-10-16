@@ -9,7 +9,7 @@ import { Universities } from './Universities';
 
 export const Home=()=> {
     return (
-                <SafeAreaView style={{ flex: 1 ,width:50}} >
+                <SafeAreaView style={{ flex: 1 ,width:200}} >
                         <Text>Universities Options in US</Text>
                         <Universities />
                 </SafeAreaView>
