@@ -15,7 +15,7 @@ export const Universities = () => {
     console.log(cartItem)
     return (
         /*Esto es un comentario en CSS*/
-        <SafeAreaView style={styles.centeredView}>
+        <View style={styles.centeredView}>
             
             <FlatList
                 data={uInfo}
@@ -33,7 +33,7 @@ export const Universities = () => {
                 )}
 
             />
-        </SafeAreaView>
+        </View>
     )
 }
 

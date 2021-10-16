@@ -20,7 +20,15 @@ export const Tabs=() =>{
                 left:20,
                 right:20,
                 elevation:0,
-              
+            },
+            navigationOptions:{
+              tabBarIcon: ({ tintColor, focused }) => (
+                <MaterialCommunityIcons
+                  name={focused ? "home" : "home-outline"}
+                  color={tintColor}
+                  size={28}
+                />
+              )
             }
         }}
       >
