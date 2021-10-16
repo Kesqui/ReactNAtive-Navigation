@@ -1,33 +1,49 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Modal, Pressable, Text } from 'react-native'
 import { Button, FlatList, TouchableOpacity, View } from 'react-native'
+import { StyleSheet } from 'react-native-web'
 import { AppContext, AppProvider } from '../context/AppContext'
 
 export const Bill = () => {
-    const [prices]=useState([])
-    const { cartItem } = useContext(AppContext)
-    const[billModal,setBillModal]=useState(false)
-    console.log(cartItem)
-    const footerBuy = () => {
-        return (
-            <View >
-                <Text>Buy</Text>
-            </View>
-        );
-    };
-    return (
-        <View>
-                    <FlatList
-                            data={cartItem}
-                            renderItem={(mapCart) => (
+    
+    const {showBillItem,createOrder} = useContext(AppContext)
+    
+    const [sum,setSum]=useState(0)
 
+    const sumFunction =()=>{
+        console.log(showBillItem)
+        const pricesArray=showBillItem.map(item=>item.priceXsemester)
+        setSum(pricesArray.reduce((a, b) => a + b, 0))
+        }
+
+    useEffect(() => {
+       sumFunction()        
+   }, [])
+
+    
+    return (
+        <View style={styles.billBox}>
+                    <FlatList
+                            data={showBillItem}
+                            renderItem={(mapBill) => (
                                 <View>
-                                    <Text>{`University Name: ${mapCart.item.uName}   Price: $${mapCart.item.priceXsemester}`}</Text>
+                                    <Text>{`${mapBill.item.uName}  $${mapBill.item.priceXsemester}`}</Text>
                                 </View>
                             )}
-                            ListFooterComponent={footerBuy}
-                        />
+                            />
+                    <Text>Total amount: {sum}</Text>
 
         </View>
     )
 }
+
+const styles=StyleSheet.create({
+    billBox:{
+        alignContent:'center',
+        border:'1px solid black',
+        justifyContent:'center',
+        width:'40vw',
+        flexDirection:'row',
+    }
+
+})

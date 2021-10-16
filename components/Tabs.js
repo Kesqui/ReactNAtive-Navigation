@@ -6,21 +6,6 @@ import {Home} from './Home';
 import { ShowBill } from './ShowBill';
 import { ShowCart } from './ShowCart';
 
-function HomeScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-  
-  function SettingsScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
 const Tab = createBottomTabNavigator();
 
 export const Tabs=() =>{
@@ -34,7 +19,8 @@ export const Tabs=() =>{
                 bottom:25,
                 left:20,
                 right:20,
-                elevation:0
+                elevation:0,
+              
             }
         }}
       >
@@ -51,7 +37,7 @@ export const Tabs=() =>{
             <Tab.Screen
             name="Cart bill"
             component={ShowBill}
-            options={{ title: 'Cart '}}
+            options={{ title: 'Bill '}}
           />
       </Tab.Navigator>
 

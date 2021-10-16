@@ -1,23 +1,22 @@
 import React, { useContext, useState } from 'react'
 import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { AppContext } from '../context/AppContext'
 
 export const Cart = () => {
-    const { cartItem } = useContext(AppContext)
+    const { cartItem,quantity } = useContext(AppContext)
     return (
         <View>
-            <Text>TEXTOOOO</Text>
-                        <FlatList
-                            data={cartItem}
-                            renderItem={(mapCart) => (
-
-                                <View>
-                                    
-                                    <Text>{`University Name: ${mapCart.item.uName}   Price: $${mapCart.item.priceXsemester}`}</Text>
-                                </View>
-                            )}
-                        />
-
+            <FlatList
+                data={cartItem}
+                renderItem={(mapCart) => (
+                    
+                    <View>
+                        {console.log(mapCart)}
+                        <Text>{`${mapCart.item.uName}   $${mapCart.item.priceXsemester}`}</Text>
+                    </View>
+                )}
+            />
         </View>
     )
 }
