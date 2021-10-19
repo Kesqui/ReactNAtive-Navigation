@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react'
-import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button, FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { AppContext } from '../context/AppContext'
+import { Quantities } from './Quantities'
 
 export const Cart = () => {
     const { cartItem,quantity } = useContext(AppContext)
@@ -12,8 +13,8 @@ export const Cart = () => {
                 renderItem={(mapCart) => (
                     
                     <View>
-                        {console.log(mapCart)}
                         <Text>{`${mapCart.item.uName}   $${mapCart.item.priceXsemester}`}</Text>
+                        <Quantities/>
                     </View>
                 )}
             />

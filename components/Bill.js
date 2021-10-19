@@ -11,7 +11,6 @@ export const Bill = () => {
     const [sum,setSum]=useState(0)
 
     const sumFunction =()=>{
-        console.log(showBillItem)
         const pricesArray=showBillItem.map(item=>item.priceXsemester)
         setSum(pricesArray.reduce((a, b) => a + b, 0))
         

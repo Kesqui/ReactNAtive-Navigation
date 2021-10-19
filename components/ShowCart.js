@@ -5,11 +5,12 @@ import { AppContext, AppProvider } from '../context/AppContext';
 import { Cart } from './Cart';
 import { Navbar } from './Navbar';
 
-export const ShowCart = ({ navigation }) => {
+export const ShowCart = () => {
     
     
-    const {cartItem,setshowBillItem,createOrder}=useContext(AppContext)
-    const [quantity,setQuantity]=useState([])
+    const {cartItem,setshowBillItem,showQuantity,uInfo,setOrders,setCartItem}=useContext(AppContext)
+   
+    const [caritemQuantity,setCaritemQuantity]=useState(cartItem)
 
     const handleBill=(item)=>{
         const billNewArray=cartItem.filter(itemBill=>itemBill.id!==item.id);
@@ -19,11 +20,33 @@ export const ShowCart = ({ navigation }) => {
 
     }
 
+    
+    const quantyHandle=(item)=>{
+        const findValue = uInfo.find(itemTemp => itemTemp.id === item.id)
+        findValue.Stock -= showQuantity;
+       
+    }
+    const createOrder = () => {
+        let values = uInfo
+        const newOrder = cartItem.map(itemTemp => {
+            const newObjectInfo =  quantyHandle(itemTemp);
+    
+            const filterValue = values.filter(itemFilter => itemTemp.id !== itemFilter.id)
+            values = [...filterValue, newObjectInfo ] 
+            return itemTemp
+        })
+        setOrders((prev) => ([...prev, newOrder]))
+        setCartItem([])
+    }
+
+    
+
     return (
         <>
             <SafeAreaView style={{ flex: 1 }} >
 
                 <Cart />
+
 
             </SafeAreaView>
             <SafeAreaView>

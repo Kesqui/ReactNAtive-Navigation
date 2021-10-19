@@ -4,15 +4,15 @@ import { StyleSheet } from 'react-native-web'
 import { AppContext } from '../context/AppContext'
 
 export const Universities = () => {
-    const { uInfo, cartItem, setCartItem} = useContext(AppContext)
-    const[quantity,setQuantity]=useState(1)
+    const { uInfo, cartItem, setCartItem,showQuantity} = useContext(AppContext)
+ 
     const setCart = ({ item }) => () => {
         const cartFinal = cartItem.filter(itemLocal => itemLocal.id !== item.id);
-        cartFinal.push({...item, quantity})
+        cartFinal.push({...item,showQuantity})
         setCartItem(cartFinal)
         // setCartItem(cartFinal)
     }
-    console.log(cartItem)
+
     return (
         /*Esto es un comentario en CSS*/
         <View style={styles.centeredView}>

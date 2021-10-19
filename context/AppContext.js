@@ -10,7 +10,8 @@ export const AppProvider = ({children,navigate}) => {
     const [uInfo, setUinfo] = useState([])
     const [cartItem, setCartItem] = useState([])
     const [orders, setOrders] = useState([])
-    const[showBillItem,setshowBillItem]=useState([])
+    const[showBillItem,setshowBillItem]=useState([])    
+    const [showQuantity, setShowQuantity]=useState(0)
 
 
     async function handleFetch(){
@@ -39,31 +40,14 @@ export const AppProvider = ({children,navigate}) => {
         
 }
 
-const quantyHandle=(item)=>{
-    const findValue = uInfo.find(itemTemp => itemTemp.id === item.id)
-    findValue.Stock -= item.quantity;
-    return findValue
-}
 
-const createOrder = () => {
-    let values = uInfo
-    const newOrder = cartItem.map(itemTemp => {
-        const newObjectInfo =  quantyHandle(itemTemp);
-
-        const filterValue = values.filter(itemFilter => itemTemp.id !== itemFilter.id)
-        values = [...filterValue, newObjectInfo ] 
-        return itemTemp
-    })
-    setOrders((prev) => ([...prev, newOrder]))
-    setCartItem([])
-}
     useEffect(() => {
         handleFetch()
     }, [])
 
 
     return (
-        <AppContext.Provider value={{uInfo,cartItem,setCartItem,showBillItem,setshowBillItem,createOrder}}>
+        <AppContext.Provider value={{uInfo,cartItem,setCartItem,showBillItem,setshowBillItem,showQuantity,orders,setOrders,setShowQuantity}}>
             {children}
         </AppContext.Provider>
     )
