@@ -51,7 +51,21 @@ export const AppProvider = ({children,navigate}) => {
 
 
     return (
-        <AppContext.Provider value={{uInfo,cartItem,setCartItem,setUinfo,showBillItem,finishShow,setChangeInitial,changeInitial,setFinishShow,setshowBillItem,setToShow,toShow,cartItemFinal,setCartItemFinal,showQuantity,orders,setOrders,setShowQuantity}}>
+        <AppContext.Provider value={{
+            uInfo,cartItem,
+            setCartItem,setUinfo,
+            showBillItem,finishShow,
+            setChangeInitial,
+            changeInitial,
+            setFinishShow,
+            setshowBillItem,
+            setToShow,
+            toShow,
+            cartItemFinal,
+            setCartItemFinal,
+            showQuantity,orders,
+            setOrders,
+            setShowQuantity}}>
             {children}
         </AppContext.Provider>
     )

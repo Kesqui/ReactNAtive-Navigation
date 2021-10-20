@@ -6,14 +6,15 @@ import { AppContext, AppProvider } from '../context/AppContext'
 
 export const Bill = () => {
     
-    const {showBillItem,setshowBillItem,createOrder} = useContext(AppContext)
+    const {showBillItem,setshowBillItem} = useContext(AppContext)
     
     const [sum,setSum]=useState(0)
 
     const sumFunction =()=>{
         const pricesArray=showBillItem.map(item=>item.priceXsemester)
-        setSum(pricesArray.reduce((a, b) => a + b, 0))
-        
+        const quantityArray=showBillItem.map(item=>item.showQuantity)
+       // setSum(pricesArray.reduce((a, b) => a + b, 0))
+       setSum(pricesArray.map((v,i)=>v*quantityArray[i]).reduce((x,y)=>x+y),0)
         }
         
         const cleanScreen=()=>{
