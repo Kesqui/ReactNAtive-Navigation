@@ -9,9 +9,13 @@ export const AppProvider = ({children,navigate}) => {
 
     const [uInfo, setUinfo] = useState([])
     const [cartItem, setCartItem] = useState([])
+    const [cartItemFinal, setCartItemFinal] = useState()
     const [orders, setOrders] = useState([])
     const[showBillItem,setshowBillItem]=useState([])    
-    const [showQuantity, setShowQuantity]=useState(0)
+    const [showQuantity, setShowQuantity]=useState(1)
+    const [finishShow,setFinishShow]=useState([])
+    const [changeInitial,setChangeInitial]= useState(cartItem)
+    const [toShow,setToShow]= useState(uInfo)
 
 
     async function handleFetch(){
@@ -47,7 +51,7 @@ export const AppProvider = ({children,navigate}) => {
 
 
     return (
-        <AppContext.Provider value={{uInfo,cartItem,setCartItem,showBillItem,setshowBillItem,showQuantity,orders,setOrders,setShowQuantity}}>
+        <AppContext.Provider value={{uInfo,cartItem,setCartItem,setUinfo,showBillItem,finishShow,setChangeInitial,changeInitial,setFinishShow,setshowBillItem,setToShow,toShow,cartItemFinal,setCartItemFinal,showQuantity,orders,setOrders,setShowQuantity}}>
             {children}
         </AppContext.Provider>
     )

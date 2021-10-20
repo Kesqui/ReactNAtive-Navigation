@@ -1,18 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, SafeAreaView,FlatList, Text, View } from 'react-native'
-import { StyleSheet } from 'react-native-web'
+import { StyleSheet } from 'react-native'
 import { AppContext } from '../context/AppContext'
 
 export const Universities = () => {
     const { uInfo, cartItem, setCartItem,showQuantity} = useContext(AppContext)
- 
+
+
     const setCart = ({ item }) => () => {
         const cartFinal = cartItem.filter(itemLocal => itemLocal.id !== item.id);
         cartFinal.push({...item,showQuantity})
         setCartItem(cartFinal)
+        
+        
         // setCartItem(cartFinal)
     }
-
     return (
         /*Esto es un comentario en CSS*/
         <View style={styles.centeredView}>

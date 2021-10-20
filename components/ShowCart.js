@@ -7,25 +7,38 @@ import { Navbar } from './Navbar';
 
 export const ShowCart = () => {
     
-    
-    const {cartItem,setshowBillItem,showQuantity,uInfo,setOrders,setCartItem}=useContext(AppContext)
-   
-    const [caritemQuantity,setCaritemQuantity]=useState(cartItem)
 
-    const handleBill=(item)=>{
-        const billNewArray=cartItem.filter(itemBill=>itemBill.id!==item.id);
-        billNewArray.push(item)
+    const {cartItem,setshowBillItem,setUinfo,setToShow,setChangeInitial ,finishShow,setFinishShow,uInfo,setOrders,setCartItem}=useContext(AppContext)
+   
+
+    const handleBill=()=>{
+       // const billNewArray=cartItem.filter(itemBill=>itemBill.id!==item.id);
+       // billNewArray.push(item)
         setshowBillItem(cartItem)
         createOrder()
+        handleItemToShow(cartItem)
 
     }
-
+    const handleItemToShow=(item)=>{
+            const results = uInfo.map(mapItem => 
+                mapItem.id == item.id ? [...mapItem, mapItem.Stock= item.Stock]: mapItem);
+                setUinfo(results)
+            
+        }
+ 
     
     const quantyHandle=(item)=>{
         const findValue = uInfo.find(itemTemp => itemTemp.id === item.id)
-        findValue.Stock -= showQuantity;
-       
+        findValue.Stock -= item.showQuantity;
+        setChangeInitial((prev)=>([
+            ...prev, 
+            item.Stock=findValue.Stock
+        ]))
+
+        return findValue
     }
+    useEffect(() => {},[])
+
     const createOrder = () => {
         let values = uInfo
         const newOrder = cartItem.map(itemTemp => {

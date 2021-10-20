@@ -5,13 +5,15 @@ import { AppContext } from '../context/AppContext'
 import { Quantities } from './Quantities'
 
 export const Cart = () => {
-    const { cartItem,quantity } = useContext(AppContext)
+    const { cartItem,quantity,finishShow } = useContext(AppContext)
     return (
         <View>
+ 
+
+  
             <FlatList
                 data={cartItem}
                 renderItem={(mapCart) => (
-                    
                     <View>
                         <Text>{`${mapCart.item.uName}   $${mapCart.item.priceXsemester}`}</Text>
                         <Quantities/>
