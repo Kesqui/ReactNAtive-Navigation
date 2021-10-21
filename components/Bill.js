@@ -25,7 +25,7 @@ export const Bill = () => {
         useEffect(() => {
             sumFunction()    
         }, [showBillItem])
-
+//update
     
     return (
         <View style={styles.billBox}>
