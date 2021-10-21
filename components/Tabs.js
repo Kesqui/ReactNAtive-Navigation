@@ -35,7 +35,7 @@ export const Tabs=() =>{
           <Tab.Screen
             name="Home page"
             component={Home}
-            options={{ title: 'University Sales' }}
+            options={{ title: 'University Sales Options' }}
           />
            <Tab.Screen
             name="Cart page"

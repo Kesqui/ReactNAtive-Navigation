@@ -9,7 +9,7 @@ export const Universities = () => {
 
     const setCart = ({ item }) => () => {
         const cartFinal = cartItem.filter(itemLocal => itemLocal.id !== item.id);
-        cartFinal.push({...item,showQuantity})
+        cartFinal.push({...item,showQuantity:1})
         setCartItem(cartFinal)
         
         

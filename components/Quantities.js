@@ -5,20 +5,24 @@ import { Text } from "react-native";
 import { AppContext } from "../context/AppContext";
 
 export const Quantities = () => {
-    const { cartItem,showQuantity,setShowQuantity,changeInitial,setChangeInitial } = useContext(AppContext);
+    const { cartItem,setCartItem } = useContext(AppContext);
+    const [showQuantity, setShowQuantity]=useState(1)
     const mapID=cartItem.map(IdMap=>IdMap.id)
-    console.log(mapID[0])
-    const handleQuantityAdd = (item) =>()=> {
-        const independentlyQuant = cartItem.map(mapItem => 
-            mapItem.id != item.id ? setShowQuantity(showQuantity +1): 1);
+
+    const handleQuantityAdd = (item)=>()=>{
         
-        setChangeInitial((prev)=>([
-            ...prev,
-            item[0].showQuantity=showQuantity+1
-        ]))
-
-
-
+        setShowQuantity(showQuantity +1);
+        const mapIndex=item.map((_some,i)=>[
+        cartItem[i].showQuantity=showQuantity+1
+        ])
+        return mapIndex
+    };
+    console.log(cartItem)
+    const handleQuantityLess = (index)=> ()=> {
+        
+        setShowQuantity(showQuantity -1);
+        const newArrayLess=[...cartItem]
+        newArrayLess[index].showQuantity=showQuantity-1
         
     };
 
@@ -28,7 +32,7 @@ export const Quantities = () => {
         <View>
             <Text>{showQuantity}</Text>
             <Button title="+" onPress={handleQuantityAdd(cartItem)}/>
-            <Button title="-" />
+            <Button title="-" onPress={handleQuantityLess(cartItem)}/>
             
         </View>
         

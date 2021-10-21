@@ -11,8 +11,8 @@ export const AppProvider = ({children,navigate}) => {
     const [cartItem, setCartItem] = useState([])
     const [cartItemFinal, setCartItemFinal] = useState()
     const [orders, setOrders] = useState([])
-    const[showBillItem,setshowBillItem]=useState([])    
-    const [showQuantity, setShowQuantity]=useState(1)
+    const [showBillItem,setshowBillItem]=useState([])    
+
     const [finishShow,setFinishShow]=useState([])
     const [changeInitial,setChangeInitial]= useState(cartItem)
     const [toShow,setToShow]= useState(uInfo)
@@ -44,6 +44,31 @@ export const AppProvider = ({children,navigate}) => {
         
 }
 
+const quantyHandle=(item)=>{
+    const findValue = uInfo.find(itemTemp => itemTemp.id === item.id)
+    findValue.Stock -= item.showQuantity;
+    setChangeInitial((prev)=>([
+        ...prev, 
+        item.Stock=findValue.Stock
+    ]))
+
+    return findValue
+    
+}
+
+const createOrder = () => {
+    let values = uInfo
+    const newOrder = cartItem.map(itemTemp => {
+        const newObjectInfo =  quantyHandle(itemTemp);
+        const filterValue = values.filter(itemFilter => itemTemp.id !== itemFilter.id)
+        values = [...filterValue, newObjectInfo ] 
+        return itemTemp
+    })
+    setOrders((prev) => ([...prev, newOrder]))
+    setCartItem([])
+}
+
+
 
     useEffect(() => {
         handleFetch()
@@ -52,9 +77,13 @@ export const AppProvider = ({children,navigate}) => {
 
     return (
         <AppContext.Provider value={{
-            uInfo,cartItem,
-            setCartItem,setUinfo,
-            showBillItem,finishShow,
+             createOrder,
+            uInfo,
+            cartItem,
+            setCartItem,
+            setUinfo,
+            showBillItem,
+            finishShow,
             setChangeInitial,
             changeInitial,
             setFinishShow,
@@ -63,9 +92,9 @@ export const AppProvider = ({children,navigate}) => {
             toShow,
             cartItemFinal,
             setCartItemFinal,
-            showQuantity,orders,
+            orders,
             setOrders,
-            setShowQuantity}}>
+            }}>
             {children}
         </AppContext.Provider>
     )

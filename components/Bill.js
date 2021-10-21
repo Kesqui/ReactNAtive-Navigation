@@ -12,15 +12,15 @@ export const Bill = () => {
 
     const sumFunction =()=>{
         const pricesArray=showBillItem.map(item=>item.priceXsemester)
-        const quantityArray=showBillItem.map(item=>item.showQuantity)
-       // setSum(pricesArray.reduce((a, b) => a + b, 0))
+        const quantityArray=showBillItem.map(itemq=>itemq.showQuantity)
+       //setSum(pricesArray.reduce((a, b) => a + b, 0))
        setSum(pricesArray.map((v,i)=>v*quantityArray[i]).reduce((x,y)=>x+y),0)
         }
-        
-        const cleanScreen=()=>{
-            setshowBillItem([])
-            setSum(0) 
-        }
+        console.log(showBillItem)
+        //const cleanScreen=()=>{
+        //    setshowBillItem([])
+        //    setSum(0) 
+        //}
         
         useEffect(() => {
             sumFunction()    
@@ -39,7 +39,7 @@ export const Bill = () => {
                             )}
                             />
                     <Text>Total amount: {sum}</Text>
-                    <Button title='Got it' onPress={cleanScreen}/>
+                    
         </View>
     )
 }
